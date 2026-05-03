@@ -9,10 +9,29 @@
 
   <body>
     <h1>German Tax Calculator</h1>
-    Only works in the Gleitzonenbereich and only subtracts pension
-    contributions!
+    Only works for Mini- and Midijobs and only subtracts pension contributions!
 
     <form id="tax-form">
+      <div class="form-row">
+        <label for="is_voluntarily_pension_insured">
+          <input
+            type="checkbox"
+            id="is_voluntarily_pension_insured"
+            name="is_voluntarily_pension_insured"
+          />
+          Voluntarily pension insured
+        </label>
+      </div>
+      <div class="form-row">
+        <label for="is_employed_in_household">
+          <input
+            type="checkbox"
+            id="is_employed_in_household"
+            name="is_employed_in_household"
+          />
+          Employed in private Household
+        </label>
+      </div>
       <div class="form-row">
         <label for="year">Year to perform the calculations for:</label>
         <select id="year" name="year">

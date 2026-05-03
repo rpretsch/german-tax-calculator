@@ -1,7 +1,7 @@
 import os
 import logging
 from flask import Flask, jsonify, request, send_from_directory
-from core import Pension, calculation_constants
+from core import Pension, calculation_constants, UserSettings
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,12 +20,22 @@ def calculate():
 
     data = request.get_json()
 
-    gross_salary = float(data.get("gross_salary", 0))
+    is_voluntarily_pension_insured = bool(
+        data.get("is_voluntarily_pension_insured", True)
+    )
+    is_employed_in_household = bool(data.get("is_employed_in_household", True))
+
+    user_settings = UserSettings(
+        is_voluntarily_pension_insured=is_voluntarily_pension_insured,
+        is_employed_in_household=is_employed_in_household,
+    )
+
     year = int(data.get("year", 2026))
+    gross_salary = float(data.get("gross_salary", 0))
 
     logging.debug("Running request for %d %.2f", year, gross_salary)
 
-    pension = Pension(year, calculation_constants)
+    pension = Pension(year, calculation_constants, user_settings)
     employee_pension_contribution = pension.calculate_employee_contribution(
         gross_salary
     )
