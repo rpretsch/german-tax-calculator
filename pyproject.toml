@@ -1,0 +1,9 @@
+[project]
+name = "german-tax-calculator"
+version = "0.1.0"
+description = "A tax/social security contribution calculator for german employees. For now this project only focuses on the simplified calculations for (working) students."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "flask>=3.1.3",
+]
