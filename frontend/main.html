@@ -9,13 +9,28 @@
 
   <body>
     <h1>German Tax Calculator</h1>
+    Only works in the Gleitzonenbereich and only subtracts pension
+    contributions!
 
     <form id="tax-form">
       <div class="form-row">
-        <label for="income">Monthly gross income:</label>
-        <input type="number" id="income" name="income" min="0" step="0.01" />
-        <label for="income">€</label>
+        <label for="year">Year to perform the calculations for:</label>
+        <select id="year" name="year">
+          <option value="2026">2026</option>
+        </select>
       </div>
+      <div class="form-row">
+        <label for="gross_salary">Monthly gross salary:</label>
+        <input
+          type="number"
+          id="gross_salary"
+          name="gross_salary"
+          min="0"
+          step="0.01"
+        />
+        <label for="gross_salary">€</label>
+      </div>
+
       <button type="submit">Calculate</button>
     </form>
 
