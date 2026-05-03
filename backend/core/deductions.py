@@ -3,6 +3,72 @@
 from .constants import CalculationConstants
 
 
+class Tax:
+    """
+    Calcualtes the taxes for a given year.
+
+    Attributes
+    ----------
+    year: int
+        The year used for the calcuations. Used to retrieve the correct constants valid for that year.
+    calculation_constants: CalculationConstants
+        Constants for the given year used in calculations.
+    """
+
+    def __init__(
+        self, year: int, calculation_constants: dict[int, CalculationConstants]
+    ) -> None:
+
+        self.year = year
+        self.calculation_constants = calculation_constants[self.year]
+
+    def calculate_salary_tax(self, gross_salary: float) -> float:
+        """
+        Calculates the salary tax.
+        Source: ...
+
+        Parameters
+        ----------
+        gross_salary : float
+            The gross_salary of the employee.
+
+        Returns
+        -------
+        float
+            The salary tax.
+            Rounded to the nearest cent.
+        """
+
+        salary_tax_rate = self.calculation_constants.salary_tax_rate
+
+        result = round(gross_salary * salary_tax_rate, 2)
+
+        return result
+
+    def calculate_church_tax(self, gross_salary: float) -> float:
+        """
+        Calculates the church tax.
+        Source: ...
+
+        Parameters
+        ----------
+        gross_salary : float
+            The gross_salary of the employee.
+
+        Returns
+        -------
+        float
+            The church tax.
+            Rounded to the nearest cent.
+        """
+
+        church_tax_rate = self.calculation_constants.church_tax_rate
+
+        result = round(gross_salary * church_tax_rate, 2)
+
+        return result
+
+
 class Pension:
     """
     Calculates pension insurance contributions for a given year.
